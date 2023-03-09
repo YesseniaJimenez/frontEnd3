@@ -28,8 +28,8 @@ const App = () => {
   };
 
   return (
-    <div className="formulario">
-      <form onSubmit={handleSubmit}>
+    <>
+      <form className="formulario" onSubmit={handleSubmit}>
         <input
           type="text"
           value={items.artist}
@@ -52,7 +52,7 @@ const App = () => {
         </h3>
       ) : null}
       {show && <Card artist={items.artist} song={items.song} />}
-    </div>
+    </>
   );
 };
 export default App;
