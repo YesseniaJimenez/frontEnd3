@@ -1,34 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+//Aqui deberias agregar los estados y los handlers para los inputs
+import React, { useState } from "react";
+import Card from "./components/Card";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [items, setItems] = useState({
+    artist: "",
+    song: "",
+  });
+  const [show, setShow] = useState(false);
+  const [err, setErr] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (
+      items.artist.length < 3 ||
+      items.artist.charAt(0) === " " ||
+      items.song.length < 6
+    ) {
+      setShow(false);
+      setErr(true);
+    } else {
+      setShow(true);
+      setErr(false);
+    }
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="formulario">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={items.artist}
+          onChange={(e) => setItems({ ...items, artist: e.target.value })}
+          placeholder="Ingrese su artista favorito"
+        ></input>
+        <br></br>
+        <input
+          type="text"
+          value={items.song}
+          onChange={(e) => setItems({ ...items, song: e.target.value })}
+          placeholder="Ingrese su canción favorita"
+        ></input>
+        <br></br>
+        <button>Enviar</button>
+      </form>
+      {err ? (
+        <h3 className="mensaje">
+          "Por favor chequea que la información sea correcta"
+        </h3>
+      ) : null}
+      {show && <Card artist={items.artist} song={items.song} />}
     </div>
-  )
-}
-
-export default App
+  );
+};
+export default App;

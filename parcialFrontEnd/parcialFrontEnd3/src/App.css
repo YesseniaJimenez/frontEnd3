@@ -1,7 +1,7 @@
-#root {
+/*#root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  display: flex;
+  align-content: center;
   text-align: center;
 }
 
@@ -39,4 +39,18 @@
 
 .read-the-docs {
   color: #888;
+}*/
+.mensaje{
+  color: red;
+  background-color:white;
+}
+
+.formulario{
+  display: flex;
+  flex-direction:column;
+  align-items: center;  
+  background-color:skyblue;
+  height: 100px;
+  position: absolute;
+
 }
